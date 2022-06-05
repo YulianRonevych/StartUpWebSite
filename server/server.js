@@ -71,7 +71,6 @@ app.get('/register', function(req,res){
 /*Uploading images*/
 
 const multer = require('multer');
-const { responsivePropType } = require('react-bootstrap/esm/createUtilityClasses');
 
 const fileStorageEngine = multer.diskStorage({
     destination: (req, file, cb) =>{
@@ -185,7 +184,7 @@ app.get('/startups', function(req,res){
 })
 /*Send single start-up data*/
 
-app.listen(process.env.PORT | 5000, function(){
+app.listen(proc.env.PORT | 5000, function(){
     console.log('Server is listening...' + process.env.PORT);
 })
 
