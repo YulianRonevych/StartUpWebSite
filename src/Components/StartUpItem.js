@@ -26,7 +26,7 @@ return (
     <p className="sti-name">
     {sData?.data[0].name}
     </p>
-    <img alt="preview" src={`https://ch-startups.herokuapp.com/${params.id}.${sData?.data[0].filetype}`} className="startupitem-intro"/>
+    <img alt="preview" src={`https://ch-startups-server.herokuapp.com/${params.id}.${sData?.data[0].filetype}`} className="startupitem-intro"/>
     </div>
      
     <div className="sti-descr">
