@@ -8,6 +8,10 @@ app.use(cors());
 app.use(express.json())
 app.use(express.static('images'))
 
+app.get('/', function(req,res){
+    res.send('Well played');
+})
+
 app.post('/register', function(req,res){
    res.status(200).send('Success');
    const data = req.body;
@@ -67,6 +71,7 @@ app.get('/register', function(req,res){
 /*Uploading images*/
 
 const multer = require('multer');
+const { responsivePropType } = require('react-bootstrap/esm/createUtilityClasses');
 
 const fileStorageEngine = multer.diskStorage({
     destination: (req, file, cb) =>{
