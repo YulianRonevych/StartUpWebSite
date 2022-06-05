@@ -11,6 +11,7 @@ let params = useParams();
 
 const [sData, setSData] = useState();
 const [allImg, setAllImg] = useState([]);
+const [imgName, setImgName] = useState(null);
 
 const ImageRef = ref(storage, 'image/');
 
@@ -19,16 +20,21 @@ useEffect(function(){
         setSData(data);
     })
 
-   listAll(ImageRef).then(function(urls){
+   await listAll(ImageRef).then(function(urls){
       urls.items.forEach(function(curr){
           getDownloadURL(curr).then(url=>{
               setAllImg(curr=>[...curr, url])
           })
       })
+      console.log(allImg);
    })
 }, [])
 
 console.log(sData);
+
+useEffect(function(){
+   await setImgName(allImg.filter(curr=>curr.includes(params.id)));
+}, [setAllImg])
 
 
 return (
@@ -39,7 +45,7 @@ return (
     <p className="sti-name">
     {sData?.data[0].name}
     </p>
-    <img alt="preview" src={allImg.filter(curr=>curr.includes(params.id))} className="startupitem-intro"/>
+    <img alt="preview" src={`${imgName}`} className="startupitem-intro"/>
     </div>
      
     <div className="sti-descr">
