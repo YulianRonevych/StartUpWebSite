@@ -7,7 +7,7 @@ export default function Header(props){
     function handleLogOut(){
         localStorage.setItem("currentUser", null);
         props.setCurrentUser(null);
-        window.location.href="http://localhost:3000";
+        window.location.href="https://ch-startups.herokuapp.com";
     }
 
     return(

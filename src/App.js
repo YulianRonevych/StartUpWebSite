@@ -62,7 +62,7 @@ export default function App() {
       idleTimer.reset();
       setShow(false);
     }else{
-      window.location.href="http://localhost:3000";
+      window.location.href="https://ch-startups.herokuapp.com";
       setCurrentUser(null);
       localStorage.setItem("currentUser", null);
       setShow(false);
@@ -71,7 +71,7 @@ export default function App() {
 
   useEffect(function(){
     try{
-    axios.get('http://localhost:5000/register').then(function(data){
+    axios.get('https://ch-startups.herokuapp.com/register').then(function(data){
       setUsersData(data)
     })
   }catch(err){

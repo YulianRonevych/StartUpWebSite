@@ -10,7 +10,7 @@ let params = useParams();
 const [sData, setSData] = useState();
 
 useEffect(function(){
-    axios.get(`http://localhost:5000/startUpItem/${params.id}`).then(function(data){
+    axios.get(`https://ch-startups.herokuapp.com/startUpItem/${params.id}`).then(function(data){
         setSData(data);
     })
 }, [])
@@ -26,7 +26,7 @@ return (
     <p className="sti-name">
     {sData?.data[0].name}
     </p>
-    <img alt="preview" src={`http://localhost:5000/${params.id}.${sData?.data[0].filetype}`} className="startupitem-intro"/>
+    <img alt="preview" src={`https://ch-startups.herokuapp.com/${params.id}.${sData?.data[0].filetype}`} className="startupitem-intro"/>
     </div>
      
     <div className="sti-descr">

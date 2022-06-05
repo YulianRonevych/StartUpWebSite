@@ -32,7 +32,7 @@ export default function Login(props){
       })
       if(currentUser){
       localStorage.setItem('currentUser', JSON.stringify(currentUser));
-      window.location.href="http://localhost:3000/";
+      window.location.href="https://ch-startups.herokuapp.com";
       }else{
        pRef1.current.setAttribute('style', 'display: block');
        pRef2.current.setAttribute('style', 'display: block');

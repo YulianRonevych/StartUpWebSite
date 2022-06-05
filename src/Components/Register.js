@@ -39,16 +39,16 @@ export default function Register(props){
    async function HandleRegBut(e){
        e.preventDefault();
        try{
-           const {data} = axios.post('http://localhost:5000/register', registerForm).then(function(response){
+           const {data} = axios.post('https://ch-startups.herokuapp.com/register', registerForm).then(function(response){
                console.log(response);
             if(response.status === 200){
-                window.location.href="http://localhost:3000/registerSuccesful";
+                window.location.href="https://ch-startups.herokuapp.com/registerSuccesful";
             }
            }).catch(function(err){
-            window.location.href="http://localhost:3000/somethingWentWrong";
+            window.location.href="https://ch-startups.herokuapp.com/somethingWentWrong";
            });
        }catch(err){
-           window.location.href="http://localhost:3000/somethingWentWrong";
+           window.location.href="https://ch-startups.herokuapp.com/somethingWentWrong";
         //    console.log(err);
        }
    }

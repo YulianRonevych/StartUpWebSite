@@ -95,7 +95,7 @@ export default function CreateStartUp(props){
         }
     }
 
-       axios.post('http://localhost:5000/upload', formData, config).then(function(res){
+       axios.post('https://ch-startups.herokuapp.com/upload', formData, config).then(function(res){
            console.log(res);
        },
        function(err){
@@ -104,13 +104,13 @@ export default function CreateStartUp(props){
        );
 
 
-       axios.post('http://localhost:5000/createStartUp', startUp, config1).then(function(response){
+       axios.post('https://ch-startups.herokuapp.com/createStartUp', startUp, config1).then(function(response){
                console.log(response);
             if(response.status === 200){
-                window.location.href="http://localhost:3000/createSuccessful";
+                window.location.href="https://ch-startups.herokuapp.com/createSuccessful";
             }
            }).catch(function(err){
-            window.location.href="http://localhost:3000/somethingWentWrong";
+            window.location.href="https://ch-startups.herokuapp.com/somethingWentWrong";
            });
    }
 
