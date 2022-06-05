@@ -26,11 +26,11 @@ useEffect(function(){
               setAllImg(curr=>[...curr, url])
           })
       })
-      console.log(allImg);
    })
 }, [])
 
 console.log(sData);
+console.log(allImg);
 
 useEffect(function(){
    setImgName(allImg.filter(curr=>curr.includes(params.id)));
