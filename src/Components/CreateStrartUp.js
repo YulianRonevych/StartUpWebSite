@@ -95,7 +95,7 @@ export default function CreateStartUp(props){
         }
     }
 
-       axios.post('https://ch-startups-server.herokuapp.com//upload', formData, config).then(function(res){
+       axios.post('https://ch-startups-server.herokuapp.com/upload', formData, config).then(function(res){
            console.log(res);
        },
        function(err){
