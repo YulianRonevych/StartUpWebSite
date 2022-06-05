@@ -13,7 +13,7 @@ const [sData, setSData] = useState();
 const [allImg, setAllImg] = useState([]);
 const [imgName, setImgName] = useState(null);
 
-const ImageRef = ref(storage, 'image/');
+const ImageRef = ref(storage, 'images/');
 
 useEffect(function(){
     axios.get(`https://ch-startups-server.herokuapp.com/startUpItem/${params.id}`).then(function(data){
