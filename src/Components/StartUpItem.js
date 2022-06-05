@@ -20,7 +20,7 @@ useEffect(function(){
         setSData(data);
     })
 
-   await listAll(ImageRef).then(function(urls){
+   listAll(ImageRef).then(function(urls){
       urls.items.forEach(function(curr){
           getDownloadURL(curr).then(url=>{
               setAllImg(curr=>[...curr, url])
@@ -33,7 +33,7 @@ useEffect(function(){
 console.log(sData);
 
 useEffect(function(){
-   await setImgName(allImg.filter(curr=>curr.includes(params.id)));
+   setImgName(allImg.filter(curr=>curr.includes(params.id)));
 }, [setAllImg])
 
 
