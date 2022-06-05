@@ -184,7 +184,7 @@ app.get('/startups', function(req,res){
 })
 /*Send single start-up data*/
 
-app.listen(proc.env.PORT | 5000, function(){
+app.listen(process.env.PORT | 5000, function(){
     console.log('Server is listening...' + process.env.PORT);
 })
 
