@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { v4 as uuid } from "uuid";
+import storage from "./firebase";
+import {ref, uploadBytes} from 'firebase/storage';
 
 
 export default function CreateStartUp(props){
@@ -95,13 +97,18 @@ export default function CreateStartUp(props){
         }
     }
 
-       axios.post('https://ch-startups-server.herokuapp.com/upload', formData, config).then(function(res){
-           console.log(res);
-       },
-       function(err){
-           console.log(err);
-       }
-       );
+    //    axios.post('https://ch-startups-server.herokuapp.com/upload', formData, config).then(function(res){
+    //        console.log(res);
+    //    },
+    //    function(err){
+    //        console.log(err);
+    //    }
+    //    );
+
+    const imageRef = ref(storage, `images/${startUp.image.name}`);
+    uploadBytes(imageRef, startUp.image).then(function(){
+        console.log('Image Loaded');
+    })
 
 
        axios.post('https://ch-startups-server.herokuapp.com/createStartUp', startUp, config1).then(function(response){
