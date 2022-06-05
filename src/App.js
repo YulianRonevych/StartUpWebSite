@@ -71,7 +71,7 @@ export default function App() {
 
   useEffect(function(){
     try{
-    axios.get('https://ch-startups.herokuapp.com/register').then(function(data){
+    axios.get('https://ch-startups-server.herokuapp.com/register').then(function(data){
       setUsersData(data)
     }).catch(function(err){
       console.log('Bad;');

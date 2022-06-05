@@ -8,7 +8,7 @@ export default function StartUps(){
     const [sData, setSData] = useState();
 
     useEffect(function(){
-       axios.get('https://ch-startups.herokuapp.com/startups').then(function(data){
+       axios.get('https://ch-startups-server.herokuapp.com/startups').then(function(data){
            setSData(data);
        })
     }, [])

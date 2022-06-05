@@ -10,7 +10,7 @@ let params = useParams();
 const [sData, setSData] = useState();
 
 useEffect(function(){
-    axios.get(`https://ch-startups.herokuapp.com/startUpItem/${params.id}`).then(function(data){
+    axios.get(`https://ch-startups-server.herokuapp.com/startUpItem/${params.id}`).then(function(data){
         setSData(data);
     })
 }, [])
