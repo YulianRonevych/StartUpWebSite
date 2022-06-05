@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import {getDownloadURL, listAll, ref } from "firebase/storage";
+import storage from "./firebase";
 
 
 export default function StartUpItem(){
@@ -8,11 +10,22 @@ export default function StartUpItem(){
 let params = useParams();
 
 const [sData, setSData] = useState();
+const [allImg, setAllImg] = useState([]);
+
+const ImageRef = ref(storage, 'image/');
 
 useEffect(function(){
     axios.get(`https://ch-startups-server.herokuapp.com/startUpItem/${params.id}`).then(function(data){
         setSData(data);
     })
+
+   listAll(ImageRef).then(function(urls){
+      urls.items.forEach(function(curr){
+          getDownloadURL(curr).then(url=>{
+              setAllImg(curr=>[...curr, url])
+          })
+      })
+   })
 }, [])
 
 console.log(sData);
@@ -26,7 +39,7 @@ return (
     <p className="sti-name">
     {sData?.data[0].name}
     </p>
-    <img alt="preview" src={`https://ch-startups-server.herokuapp.com/${params.id}.${sData?.data[0].filetype}`} className="startupitem-intro"/>
+    <img alt="preview" src={allImg.filter(curr=>curr.includes(params.id))} className="startupitem-intro"/>
     </div>
      
     <div className="sti-descr">
