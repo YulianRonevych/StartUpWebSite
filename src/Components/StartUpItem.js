@@ -31,6 +31,7 @@ useEffect(function(){
 
 console.log(sData);
 console.log(allImg);
+console.log(allImg.filter(curr=>curr.includes(params.id)));
 
 useEffect(function(){
    setImgName(allImg.filter(curr=>curr.includes(params.id)));
@@ -45,7 +46,7 @@ return (
     <p className="sti-name">
     {sData?.data[0].name}
     </p>
-    <img alt="preview" src={`${imgName}`} className="startupitem-intro"/>
+    <img alt="preview" src={allImg.filter(curr=>curr.includes(params.id))} className="startupitem-intro"/>
     </div>
      
     <div className="sti-descr">
