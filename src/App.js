@@ -73,6 +73,8 @@ export default function App() {
     try{
     axios.get('https://ch-startups.herokuapp.com/register').then(function(data){
       setUsersData(data)
+    }).catch(function(err){
+      console.log('Bad;');
     })
   }catch(err){
     throw err;
