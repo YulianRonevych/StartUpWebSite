@@ -1,78 +1,52 @@
-import React, { useEffect, useState } from 'react';
-import HelpItem from './HelpItem';
+import React, { useEffect, useRef, useState } from 'react';
+import ContactUsSection from './ContactUsSection';
+import FAQSection from './FAQSection';
 
 export default function Help() {
-    const questionList = [
-        {
-            id: 0,
-            title: 'Is your website the best to create a successful startup?',
-            body: 'Definitely! Our app allows you to share your ideas and find support from other entrepreneurs.',
-            expanded: false,
-        },
-        {
-            id: 1,
-            title: 'How do I protect my idea?',
-            body: 'You can file for patents, trademarks, and copyrights. If you have something propriety about your company, you should consider filing for a patent to temporarily protect your business in its infancy to get it up and running.',
-            expanded: false,
-        },
-        {
-            id: 2,
-            title: 'What is the ideal team size?',
-            body: 'Founding teams tend to be 2-3 people, ideally with at least one technical cofounder. Having many more founders will get distracting and slow things down.',
-            expanded: false,
-        },
-        {
-            id: 3,
-            title: 'How do I know if my idea is good?',
-            body: 'Talk to your customers. Are you making sales? Are those customers happy with the value you are providing? This ties back to Traction and Validation. If you have a validated concept and are building traction, odds are that your idea has some legs.',
-            expanded: false,
-        },
-        {
-            id: 4,
-            title: 'What incubator should I apply to? ',
-            body: 'There are tons of incubators sprouting up around the world. We can’t tell you which incubator is best for you, because a huge part of the incubation process is mentoring. You should find the incubator that offers the best mentors for your startup’s industry and try to get in there. Location also plays a large part in the decision process. ',
-            expanded: false,
-        },
-        {
-            id: 5,
-            title: 'How much should I pay myself?',
-            body: 'As little as you can to get by. Your startups resources are precious and likely to be slim. You want to squeeze as much value out of them as possible, and that means taking a personal pay cut. Investors who have given you capital to work on your idea also don’t want to see you handle their money irresponsibly by taking an unreasonable share.',
-            expanded: false,
-        },
-    ];
-    const [questions, setQuestions] = useState(questionList);
-
-    function clickHandler(expandedQuestion) {
-        if (expandedQuestion.expanded === true) {
-            setQuestions(questionList);
-            return;
-        }
-        if (expandedQuestion.expanded === false) {
-            setQuestions(
-                questionList.map((question) => {
-                    if (expandedQuestion.id === question.id) {
-                        return { ...question, expanded: !question.expanded };
-                    }
-                    return question;
-                })
-            );
-        }
-    }
+    const [section, setSection] = useState('');
+    const ref = useRef(null);
+    const [scHeight, setScHeight] = useState();
 
     return (
         <div className="help">
             <div className="help__container">
-                <h1 className="help__header">F.A.Q.</h1>
-                <h2 className="help__title">
-                    Here you can find a list of most asked questions by our clients and users. If these question does
-                    not help you with some kind of a problem, please, contact us via email - support@startups.ua
-                </h2>
-                <div className="help__body">
-                    <div className="help__help-items help-items">
-                        {questions.map((question) => (
-                            <HelpItem key={question.id} question={question} onClick={clickHandler} />
-                        ))}
+                <div className="help__header-section">
+                    <div className="help__header-section_background"></div>
+                    <div>
+                        <div
+                            onClick={() => {
+                                setSection('FAQ');
+                                setTimeout(() => {
+                                    let content = document.querySelector('.help__content');
+                                    ref.current.style.paddingBottom = content.scrollHeight + 15 + 'px';
+                                    setScHeight(content.scrollHeight);
+                                    console.log(content.scrollHeight);
+                                });
+                            }}
+                            className="help__header-item"
+                        >
+                            F.A.Q.
+                        </div>
+                        <div
+                            onClick={() => {
+                                setSection('ContactUs');
+                                setTimeout(() => {
+                                    let content = document.querySelector('.help__content');
+                                    ref.current.style.paddingBottom = content.scrollHeight + 15 + 'px';
+                                    console.log(content.scrollHeight);
+                                });
+                            }}
+                            className="help__header-item"
+                        >
+                            Contact Us
+                        </div>
                     </div>
+                    <div className="help__header-section_background"></div>
+                </div>
+                <div ref={ref} className="help__body-section">
+                    {section === '' && <div className="help__title">Choose a section on the left.</div>}
+                    {section === 'FAQ' && <FAQSection />}
+                    {section === 'ContactUs' && <ContactUsSection />}
                 </div>
             </div>
         </div>
